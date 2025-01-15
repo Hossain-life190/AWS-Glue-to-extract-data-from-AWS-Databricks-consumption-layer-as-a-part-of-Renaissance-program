@@ -1,1 +1,15 @@
+As a part of Renaissance program, I was asked to send the extracted files in CSV format after migrating data into consumption layer of Databricks. In order to generate the extracted 
+files, I took the help of AWS glue to perform the task.
+
+Firstly, I needed to mount AWS Databricks consumption layer into AWS S3 so that AWS Glue can read and process the data. In order to better query and manage the data, it is always recommended
+to use AWS Glue data catalog, so I ensured that my data was registered in AWS Glue catalog, which I did it by setting up the crawler and bringing the data to catalog.
+
+Secondly, I set up AWS Glue job with a Pyspark script to extract data from databricks consumption layer. I performed necessary transformation as per the business and then wrote the output
+in an excel csv format.
+
+Lastly, to send the file to business stakeholders, I sent automated alerts. I set up a Lambda function triggered by the creation of the file in S3 which can send an email 
+using Amazon SNS to notify the stakeholders of the file availability.
+
+I scheduled the AWS Glue job daily at 3am for sending the extracts and I used AWS Glue console to monitor the job and check logs for errors or performance issues.
+
 
